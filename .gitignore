@@ -1,0 +1,26 @@
+# Ignorer les modules npm installés
+node_modules/
+
+# Ignorer les fichiers créés par l'utilisateur
+.DS_Store
+.env
+
+# Ignorer les fichiers de configuration locaux
+config/*.json
+
+# Ignorer les fichiers journaux
+logs/
+*.log
+npm-debug.log*
+
+# Ignorer les fichiers de sauvegarde
+*.swp
+*~
+
+# Ignorer les fichiers de configuration d'éditeur
+.vscode/
+.idea/
+
+# Ignorer les fichiers de cache
+node_modules
+.cache
