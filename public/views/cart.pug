@@ -1,0 +1,25 @@
+include header.pug
+
+main.main-content
+  .cart-container
+    if cartItems.length
+      .cart-items
+        each item in cartItems
+          .cart-item
+            img.cart-item-image(src="/" + item.imageUrl, alt=item.name)
+            .cart-item-details
+              h3.cart-item-title= item.name
+              p.cart-item-quantity Quantité: #{item.quantity}
+              p.cart-item-price Prix Unitaire: #{item.price} €
+              p.cart-item-subtotal Sous-total: #{item.subtotal} €
+              form(action="/remove-from-cart" method="POST")
+                input(type="hidden" name="productId" value=item._id)
+                button(type="submit") Supprimer
+      .cart-summary
+        h2.cart-total-title Total
+        p.cart-total-price #{total} €
+        a.cart-checkout-button(href="/checkout") Commander
+    else
+      p.cart-empty Votre panier est vide.
+
+include footer.pug

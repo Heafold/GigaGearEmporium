@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+  head
+    title Admin Dashboard
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin.css")
+
+  body
+    header
+      nav
+        ul
+          li
+            a(href="/admin/products") Produits
+          li
+            a(href="/admin/orders") Commandes
+          li
+            a(href="/logout") Se déconnecter
+
+    main
+      h1 Commandes
+      if orders.length
+        ul#order-list
+          each order in orders
+            li.order-item
+              span Adresse de livraison: #{order.address}
+              ul
+                each productInfo in order.products
+                  li #{productInfo.name} (Quantité: #{productInfo.quantity})
+              if order.status === 'En attente'
+                a(href=`/admin/orders/${order._id}/process`, class="process-button") Traiter la commande
+              else
+                span Status: #{order.status}
+        
+        // Pagination
+        .pagination
+          if page > 1
+            a(href=`/admin/orders?page=${page - 1}`) « Précédent
+          | Page #{page} sur #{totalPages}
+          if page < totalPages
+            a(href=`/admin/orders?page=${page + 1}`) Suivant »
+
+      else
+        p Aucune commande disponible.

@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+  head
+    title Admin Dashboard
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin.css")
+
+  body
+    header
+      nav.navigation
+        ul.nav-list
+          li.nav-item
+            a.nav-link(href="/admin/products") Produits
+          li.nav-item
+            a.nav-link(href="/admin/orders") Commandes
+          li.nav-item
+            a.nav-link(href="/logout") Se déconnecter
+
+    main.main-content
+      h1.title Modifier le Produit
+      form#new-product-form(action=`/admin/products/${product._id}/edit`, method="POST", enctype="multipart/form-data")
+        .form-group
+          label(for="name") Nom du Produit
+          input#name.form-control(type="text", name="name", required, value=product.name)
+        .form-group
+          label(for="category") Catégorie
+          select#category.form-control(name="category", required)
+            option(value="screen", selected=(product.category === 'screen')) Écran
+            option(value="keyboard", selected=(product.category === 'keyboard')) Clavier
+            option(value="mouse", selected=(product.category === 'mouse')) Souris
+            option(value="computer", selected=(product.category === 'computer')) Ordinateur
+        .form-group
+          label(for="price") Prix
+          input#price.form-control(type="number", name="price", required, value=product.price)
+        .form-group
+          label(for="image") Image du Produit
+          input#image.form-control-file(type="file", name="image")
+          input(type="hidden", name="currentImage", value=product.imageUrl)
+        button.btn.btn-primary(type="submit") Modifier le Produit

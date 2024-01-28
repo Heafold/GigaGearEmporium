@@ -1,0 +1,10 @@
+include header.pug
+
+main.main-content
+  h1 Paiement
+  form.checkout-form(action="/checkout" method="POST")
+    label(for="address") Adresse de livraison:
+    input.checkout-form-input(type="text" id="address" name="address" required)
+    button.checkout-form-button(type="submit") Confirmer la commande
+
+include footer.pug

@@ -1,0 +1,27 @@
+doctype html
+html(lang="fr")
+  head
+    title Admin Login
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/login.css")
+
+  body
+    header
+      h1 Admin Login
+
+    main
+      form(method="post", action="/login")
+        div
+          label(for="username") Username:
+          input(type="text", id="username", name="username", required)
+
+        div
+          label(for="password") Password:
+          input(type="password", id="password", name="password", required)
+
+        div
+          button(type="submit") Login
+
+    footer
+      p © 2024 GigaGearEmporium. Tous droits réservés.

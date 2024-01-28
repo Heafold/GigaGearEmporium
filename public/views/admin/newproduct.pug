@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    title Admin Dashboard
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin.css")
+
+  body
+    header
+      nav.navigation
+        ul.nav-list
+          li.nav-item
+            a.nav-link(href="/admin/products") Produits
+          li.nav-item
+            a.nav-link(href="/admin/orders") Commandes
+          li.nav-item
+            a.nav-link(href="/logout") Se déconnecter
+
+    main.main-content
+      h1.title Créer un Nouveau Produit
+      form#new-product-form(action="/admin/products/new", method="POST", enctype="multipart/form-data")
+        .form-group
+          label(for="name") Nom du Produit
+          input#name.form-control(type="text", name="name", required)
+        .form-group
+          label(for="category") Catégorie
+          select#category.form-control(name="category", required)
+            option(value="screen") Écran
+            option(value="keyboard") Clavier
+            option(value="mouse") Souris
+            option(value="computer") Ordinateur
+        .form-group
+          label(for="price") Prix
+          input#price.form-control(type="number", name="price", required)
+        .form-group
+          label(for="image") Image du Produit
+          input#image.form-control-file(type="file", name="image", required)
+        button.btn.btn-primary(type="submit") Créer le Produit

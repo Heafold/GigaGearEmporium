@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+  head
+    title Admin Dashboard
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin.css")
+
+  body
+    header
+      nav
+        ul
+          li
+            a(href="/admin/products") Produits
+          li
+            a(href="/admin/orders") Commandes
+          li
+            a(href="/logout") Se déconnecter
+
+    main.container
+      h1 Produits
+      a#new-product-button(href="/admin/products/new") Nouveau Produit
+
+      if products.length
+        div#product-list
+          each product in products
+            div.product-card
+              img.product-image(src="/" + product.imageUrl, alt=product.name)
+              div.card-body
+                h5.card-title= product.name
+                p.card-text= product.category
+                p.card-text= `${product.price} €`
+                a(href=`/admin/products/${product._id}/edit`) Modifier
+                a(href=`/admin/products/${product._id}/delete`, onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');") Supprimer
+      else
+        p Aucun produit disponible.
+
+      if totalPages > 1
+        .pagination#pagination
+          if page > 1
+            a(href=`/admin/products?page=${page - 1}`) Précédent
+          | Page #{page} sur #{totalPages}
+          if page < totalPages
+            a(href=`/admin/products?page=${page + 1}`) Suivant

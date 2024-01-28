@@ -1,0 +1,25 @@
+include header.pug
+
+main.main-content
+  .breadcrumbs
+    span
+      a(href="/") Accueil
+      span > 
+      a(href=`/${categorie}`) #{titre}
+  h1 #{titre}
+  if produits.length
+    .product-grid
+      each produit in produits
+        .product-card
+          img.product-image(src="/" + produit.imageUrl, alt=produit.name)
+          .card-body
+            h3.card-title= produit.name
+            p.card-text= `Prix: ${produit.price} €`
+            form(action="/add-to-cart", method="POST")
+              input(type="hidden", name="productId", value=produit._id)
+              input(type="number", name="quantity", value=1, min=1)
+              button.add-to-cart(type="submit") Ajouter au panier
+  else
+    p Aucun produit disponible dans cette catégorie.
+
+include footer.pug
